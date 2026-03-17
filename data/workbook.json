@@ -1,0 +1,1412 @@
+[
+  {
+    "id": "array-0",
+    "title": "array",
+    "rowCount": 29,
+    "preview": "方法",
+    "blocks": [
+      {
+        "type": "table",
+        "rows": [
+          [
+            "方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "Arrays.sort(arr)",
+            "排序",
+            "升序排序只好升序，降序要另外实现"
+          ],
+          [
+            "Arrays.sort(arr, Collections.reverseOrder())",
+            "降序排序 (Integer[])",
+            "数组必须是对象 Integer[]，不能是 int[]",
+            "Integer[] arr = {5, 2, 8, 1, 3};\nArrays.sort(arr, Collections.reverseOrder());\nSystem.out.println(Arrays.toString(arr));"
+          ],
+          [
+            "Arrays.binarySearch(arr, key)",
+            "二分查找，返回索引，\n用来在 已排序数组 中快速查找元素的位置",
+            "-1 表示未找到",
+            "int index = Arrays.binarySearch(array, key);\nint idx = Arrays.binarySearch(nums, 1, 4, 3);//\tfromIndex = 1 (包含)，toIndex = 4 (不包含)，在子区间 [1,4) 查找 3"
+          ],
+          [
+            "Arrays.equals(arr1, arr2)",
+            "数组比较",
+            "返回true / false"
+          ],
+          [
+            "Arrays.fill(arr, value)",
+            "填充数组",
+            "把数组的所有元素填充为同一个值",
+            "int[] arr = new int[5];\nArrays.fill(arr, 3);// [3, 3, 3, 3, 3]"
+          ],
+          [
+            "Arrays.copyOf(arr, len)",
+            "复制一个数组，生成指定长度的新数组，\n可以动态改变数组的长度，和clone()的区别",
+            "指定长度",
+            "int[] arr = {1, 2, 3, 4};\nint[] newArr = Arrays.copyOf(arr, 3);"
+          ],
+          [
+            "Arrays.copyOfRange(arr, from, to)",
+            "截取子数组，复制部分数组，\n新成新数组，左闭右开",
+            "复制 index 从 from 到 to-1 的元素",
+            "int[] arr = {10,20,30,40,50};\nint[] newArr = Arrays.copyOfRange(arr, 1, 4);//[20, 30, 40]"
+          ],
+          [
+            "System.arraycopy 高性能复制",
+            "arraycopy(src,0,dst,0,n)\n//源头，源头起始位置，目标新数组，目标数组起始位置，复制长度",
+            "",
+            "int[] nums = {1,2,3,4,5};\nint[] copy = new int[5];\nSystem.arraycopy(nums, 0, copy, 0, nums.length);\nSystem.out.println(Arrays.toString(copy));//[1, 2, 3, 4, 5]"
+          ],
+          [
+            "Arrays.toString(arr)",
+            "数组转字符串，如果不用，打印的是 数组地址",
+            "输出 [1, 2, 3]"
+          ],
+          [
+            "Arrays.deepToString(arr2D)",
+            "二维数组转字符串",
+            "输出 [[1,2],[3,4]]"
+          ],
+          [
+            "Arrays.stream(arr)",
+            "把数组转换成 IntStream（流）对象，\n然后可以用 函数式操作（lambada）处理数据，比如 sum()、max(), average(),distinct(), filter()、map() 等。\n.stream() 不一定是 IntStream，要看来源类型。如果来源是对象List<Integer> list = List.of(1,2,3); list.stream()得到是Stream<Integer>。同理Integer[] arr = {1,2,3};Arrays.stream(arr);但是，int[] nums = {1,2,3};Arrays.stream(nums)，得到是Intstream可以用那些方法。用mapToInt为了能用到max() 这样的函数方法。",
+            "Arrays.stream(arr)//返回IntStream对象\nint[] arr = {1,2,3,4};int sum = Arrays.stream(arr).sum();\n求最大值：int max = Arrays.stream(arr).max()/.min().getAsInt();",
+            "过滤数据：int[] arr = {1,2,3,4,5,6};\nArrays.stream(arr) .filter(n -> n % 2 == 0).forEach(System.out::println);\nmap转换：\nint[] arr = {1,2,3};\nArrays.stream(arr).map(n -> n * 2).forEach(System.out::println);//246\n数组转list：\nint[] arr = {1,2,3}\nList<Integer> list =Arrays.stream(arr).boxed().toList();\nboxed()为了装箱成Stream对象Stream<Integer>，Stream是用来操作数据集合的。\n计数：\nint[] arr = {1,2,3,4,5};\nlong count =Arrays.stream(arr).filter(n -> n > 3).count(); // 4，5\n去重并建立新数组：\nint[] newArr = Arrays.stream(nums).distinct().toArray();"
+          ],
+          [
+            "Arrays.stream(nums).boxed().toList();",
+            "数组->list，List只能存对象",
+            "List 只能存对象",
+            "int[] nums = {1,2,3,4};\nList<Integer> list =Arrays.stream(nums).boxed().toList();\nSystem.out.println(list);"
+          ],
+          [
+            "Arrays.asList(arr);",
+            "数组转成list",
+            "Arrays.asList(array)，Arrays.asList() 返回的是固定大小的数组，底层仍是array，不可以list.add，remove,可以修改元素。",
+            "String[] arr = {\"apple\", \"banana\", \"cat\"};\nList<String> list = Arrays.asList(arr);\nSystem.out.println(list);"
+          ],
+          [
+            "如果想要真正的 ArrayList",
+            "List<Integer> list =\n    new ArrayList<>(Arrays.asList(1,2,3));"
+          ],
+          [
+            "list.toArray(new Integer[0]);\nList->数组",
+            "",
+            "list.toArray(new Integer[0])返回类型是\nInteger[]， Java 会自动创建正确大小数组。等价于list.toArray(new Integer[list.size()])。list.toArray()返回类型是Object[]",
+            "Integer[] arr = list.toArray(new Integer[0]);"
+          ],
+          [
+            "List → int[]",
+            "int[] arr =list.stream().mapToInt(i -> i).toArray();"
+          ],
+          [
+            "oldarr.clone()",
+            "int[] newArr = oldarr.clone()",
+            "创建一个内容一样的新副本（浅拷贝）,clone 后修改 新数组copy 不影响 nums。Arrays.copyOf()\n可以改变长度",
+            "int[] nums = {1,2,3};\nint[] copy = nums.clone();"
+          ],
+          [
+            "new int[n]",
+            "创建数组",
+            "int[] arr = new int[5];"
+          ],
+          [
+            "{}",
+            "初始化数组",
+            "int[] arr = {1,2,3};"
+          ],
+          [
+            "new int[m][n]",
+            "二维数组",
+            "int[][] grid = new int[3][4];",
+            "岛屿问题"
+          ],
+          [
+            "for",
+            "普通遍历",
+            "for(int i=0;i<arr.length;i++)"
+          ],
+          [
+            "for-each",
+            "增强",
+            "for(int n: arr)",
+            "统计"
+          ],
+          [
+            "",
+            "倒序遍历数组for",
+            "for(int i=n-1;i>=0;i--)",
+            "反转数组"
+          ],
+          [
+            "Arrays.sort(Integer[]) 排序对象",
+            "支持 Comparator",
+            "要降序（需要用 Integer[]）",
+            "Integer[] nums = {5,2,8,1};\nArrays.sort(nums, (a,b) -> b - a);"
+          ],
+          [
+            "List 自定义排序",
+            "",
+            "",
+            "List<Integer> list = Arrays.asList(5,2,8,1);\nlist.sort((a,b) -> a - b);// 升序"
+          ],
+          [
+            "按 二维数组第二列 a[1] 的值升序排序",
+            "",
+            "",
+            "Arrays.sort(arr, Comparator.comparingInt(a -> a[1]));// 升序\nArrays.sort(arr,\n    Comparator.comparingInt((int[] a) -> a[1]).reversed()\n);//降序"
+          ],
+          [
+            "和 == 的区别",
+            "等号是否指向同一内存地址",
+            "比较地址（是否同一个对象）"
+          ],
+          [
+            "Arrays.equals(arr1, arr2)",
+            "比较两个数组内容是否相等",
+            "",
+            "int[] a = {1,2,3};\nint[] b = {1,2,3};\nint[] c = {3,2,1};\n\nSystem.out.println(Arrays.equals(a, b)); // true"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": false
+      }
+    ]
+  },
+  {
+    "id": "list-1",
+    "title": "list",
+    "rowCount": 39,
+    "preview": "方法",
+    "blocks": [
+      {
+        "type": "table",
+        "rows": [
+          [
+            "方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "new ArrayList<>()",
+            "创建 & 初始化",
+            "",
+            "List<Integer> list = new ArrayList<>();"
+          ],
+          [
+            "Arrays.asList(arr)",
+            "",
+            "",
+            "List<Integer> list = Arrays.asList(1,2,3);"
+          ],
+          [
+            "List.of(...)",
+            "",
+            "",
+            "List<Integer> list = List.of(1,2,3);"
+          ],
+          [
+            "List.copyOf(list)",
+            "",
+            "创建一个 List 的\n不可修改副本（immutable copy）,\ncopy 是不可修改的",
+            "List<Integer> list = new ArrayList<>();\nlist.add(1);\nlist.add(2);\nlist.add(3);\nList<Integer> copy = List.copyOf(list);\nSystem.out.println(copy);"
+          ],
+          [
+            "add(E e)",
+            "添加元素",
+            "",
+            "list.add(5);"
+          ],
+          [
+            "add(int index, E e)",
+            "插入",
+            "",
+            "list.add(2, 10);"
+          ],
+          [
+            "addAll(Collection c)",
+            "把另一个集合里\n的所有元素添加到当前集合中",
+            "",
+            "List<Integer> list1 = new ArrayList<>();\nlist1.add(1);\nlist1.add(2);\n\nList<Integer> list2 = new ArrayList<>();\nlist2.add(3);\nlist2.add(4);\n\nlist1.addAll(list2);\nSystem.out.println(list1);//[1, 2, 3, 4]"
+          ],
+          [
+            "addAll(int index, Collection c)",
+            "把集合 c 的所有元素插入到\n List 的指定位置 index",
+            "返回值 true/false，\ntrue → 成功插入",
+            "List<Integer> list = new ArrayList<>(List.of(1,2,5,6));\nList<Integer> add = List.of(3,4);\nlist.addAll(2, add);\nSystem.out.println(list);"
+          ],
+          [
+            "remove(int index)",
+            "删除元素",
+            "",
+            "list.remove(2);"
+          ],
+          [
+            "remove(Object o)",
+            "删除指定值",
+            "",
+            "list.remove(Integer.valueOf(3));"
+          ],
+          [
+            "removeAll(Collection c)",
+            "批量删除、去重",
+            "",
+            "list.removeAll(Arrays.asList(1,2));"
+          ],
+          [
+            "clear()",
+            "重置状态",
+            "",
+            "list.clear();"
+          ],
+          [
+            "set(int index, E e)",
+            "修改元素",
+            "",
+            "list.set(1, 20);"
+          ],
+          [
+            "replaceAll(UnaryOperator<E> op)",
+            "批量修改",
+            "",
+            "list.replaceAll(n -> n*2);"
+          ],
+          [
+            "get(int index)",
+            "查询 & 判断",
+            "",
+            "int x = list.get(2);"
+          ],
+          [
+            "indexOf(Object o)",
+            "查找第一次出现",
+            "",
+            "list.indexOf(3);"
+          ],
+          [
+            "lastIndexOf(Object o)",
+            "查找最后一次出现",
+            "",
+            "list.lastIndexOf(3);"
+          ],
+          [
+            "contains(Object o)",
+            "判断存在性",
+            "",
+            "list.contains(3);"
+          ],
+          [
+            "containsAll(Collection c)",
+            "子集判断",
+            "",
+            "list.containsAll(Arrays.asList(1,2));"
+          ],
+          [
+            "isEmpty()",
+            "初始化/判空",
+            "",
+            "list.isEmpty();"
+          ],
+          [
+            "for-each",
+            "遍历",
+            "",
+            "for(int n: list){...}"
+          ],
+          [
+            "iterator",
+            "删除/复杂遍历",
+            "",
+            "Iterator<Integer> it = list.iterator(); while(it.hasNext()){...}"
+          ],
+          [
+            "stream",
+            "高阶计算、统计",
+            "",
+            "list.stream().filter(n->n>2).toList();"
+          ],
+          [
+            "Collections.sort(list)",
+            "排序 & 打乱",
+            "",
+            "Collections.sort(list);"
+          ],
+          [
+            "Collections.sort(list, Comparator.reverseOrder())",
+            "排序题",
+            "",
+            "Collections.sort(list, Comparator.reverseOrder());"
+          ],
+          [
+            "list.sort(Comparator)",
+            "自定义排序",
+            "",
+            "list.sort((a,b)->b-a);"
+          ],
+          [
+            "Collections.shuffle(list)",
+            "随机排列",
+            "",
+            "Collections.shuffle(list);"
+          ],
+          [
+            "Collections.max(list)",
+            "统计 & 辅助",
+            "",
+            "Collections.max(list);"
+          ],
+          [
+            "Collections.min(list)",
+            "求集合中最小值 的快捷方法",
+            "",
+            "List<Integer> list = List.of(3, 5, 1, 7, 2);\nint minVal = Collections.min(list);"
+          ],
+          [
+            "Collections.frequency(list, obj)",
+            "出现次数统计",
+            "",
+            "Collections.frequency(list, 2);"
+          ],
+          [
+            "toArray()",
+            "转换",
+            "",
+            "Integer[] arr = list.toArray(new Integer[0]);"
+          ],
+          [
+            "stream().mapToInt(x->x).toArray()",
+            "list变数组",
+            "",
+            "int[] arr = list.stream().mapToInt(x->x).toArray();"
+          ],
+          [
+            "List.copyOf(list)",
+            "创建一个不可变的 List 副本",
+            "防止修改",
+            "List<Integer> original = new ArrayList<>();\noriginal.add(1);\noriginal.add(2);\noriginal.add(3);\nList<Integer> copy = List.copyOf(original);\nSystem.out.println(copy);// 这个copy新的list是无法改变，\ncopy.add(4);  // 会抛出 UnsupportedOperationException"
+          ],
+          [
+            "stream().map(...)",
+            "批量计算/映射",
+            "",
+            "list.stream().map(n->n*2).toList();"
+          ],
+          [
+            "stream().filter(...)",
+            "滤波/条件筛选",
+            "返回 可修改的 List（通常是 ArrayList）\n可以继续 add、remove 元素，\nList<String> result = words.stream() .filter(s -> s.length() > 3).collect(Collectors.toList());",
+            "List<Integer> list = List.of(1, 2, 3, 4, 5);\nList<Integer> result = list.stream()\n.filter(n -> n > 2) // 过滤大于 2 的元素\n.toList();  // 返回不可变List，不能修改"
+          ],
+          [
+            "stream().distinct()",
+            "返回一个去重后的新 Stream，\n保留原顺序，不修改原集合",
+            "Set 不保留顺序（HashSet）\ndistinct() 保留顺序",
+            "List<Integer> list = List.of(1, 2, 2, 3, 3, 3, 4);\nList<Integer> unique = list.stream().distinct().toList();   // Java 16+ 或 .collect(Collectors.toList())"
+          ],
+          [
+            "stream().sorted()",
+            "返回一个排序后的新 Stream，\n默认升序，原集合不变",
+            "",
+            "List<Integer> sorted = list.stream().sorted()  // 自然升序\n .toList();"
+          ],
+          [
+            "stream().sorted()自定义",
+            "自定义排序（Comparator）",
+            "words.stream().sorted(Comparator.comparingInt(String::length)).toList();//可以用方法引用",
+            "List<String> words = List.of(\"apple\",\"banana\",\"kiwi\");\n\nList<String> sortedByLength = words.stream().sorted((a, b) -> a.length() - b.length())  // 按长度升序\n.toList();\n\nSystem.out.println(sortedByLength);"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": true
+      }
+    ]
+  },
+  {
+    "id": "string-2",
+    "title": "string",
+    "rowCount": 42,
+    "preview": "方法",
+    "blocks": [
+      {
+        "type": "table",
+        "rows": [
+          [
+            "方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "str.contains(substring)",
+            "判断字符串是否包含某个子字符串\n返回 boolean",
+            "",
+            "String str = \"hello world\";\nSystem.out.println(str.contains(\"java\"));//输出false\nif (s.contains(\"abc\")) { }\nif (s.contains(\" \")) { }    // 是否有空格\nif (s.contains(\".\")) { }    // 是否有点"
+          ],
+          [
+            "length()",
+            "字符串长度",
+            "",
+            "s.length()"
+          ],
+          [
+            "charAt(i)",
+            "获取字符",
+            "",
+            "s.charAt(1) → 'e'"
+          ],
+          [
+            "toCharArray()",
+            "转字符数组",
+            "",
+            "char[] arr = s.toCharArray();"
+          ],
+          [
+            "isEmpty()",
+            "是否为空",
+            "",
+            "s.isEmpty()"
+          ],
+          [
+            "遍历",
+            "遍历字符串方法一",
+            "常用回文判断，字符统计",
+            "方法1：charAt\nfor(int i=0;i<s.length();i++){\n    char c = s.charAt(i);\n}"
+          ],
+          [
+            "增强遍历for-each",
+            "遍历字符串方法二",
+            "",
+            "方法2：toCharArray（更快）\nString s = \"hello\";\nchar[] arr = s.toCharArray();//['h','e','l','l','o']"
+          ],
+          [
+            "indexOf()",
+            "首次出现位置",
+            "",
+            "s.indexOf(\"o\")"
+          ],
+          [
+            "lastIndexOf()",
+            "最后出现位置",
+            "",
+            "s.lastIndexOf(\"o\")"
+          ],
+          [
+            "startsWith()",
+            "是否以…开头",
+            "",
+            "s.startsWith(\"he\")"
+          ],
+          [
+            "endsWith()",
+            "是否以…结尾",
+            "",
+            "s.endsWith(\"ld\")"
+          ],
+          [
+            "substring(begin)",
+            "截取从 begin 到末尾",
+            "从索引 6 开始，截取到字符串结尾，\n返回的是 新的字符串。",
+            "String s = \"hello world\";\nString sub = s.substring(6);\nSystem.out.println(sub);//world"
+          ],
+          [
+            "substring(begin,end)",
+            "左闭右开",
+            "常见去掉前缀题目如http://",
+            "\"abcdef\".substring(2,5) //cde"
+          ],
+          [
+            "split(regex)",
+            "分割字符串，字符串 → 数组",
+            "按空格 \" \" 把字符串拆分成\n多个字符串，返回 String[] 数组。用正则更好：String s = \"I  love   Java\";\nString[] arr = s.split(\"\\\\s+\");",
+            "String s = \"I love Java\";\nString[] arr = s.split(\" \");\nSystem.out.println(Arrays.toString(arr));//[I, love, Java]"
+          ],
+          [
+            "String.join(delimiter, list) 分隔符，要拼接的字符串集合",
+            "数组/List 拼接成 字符串\n返回string",
+            "",
+            "List<String> list = Arrays.asList(\"2026\", \"03\", \"15\");String result = String.join(\"-\", list);System.out.println(result);//2026-03-15"
+          ],
+          [
+            "replace()",
+            "替换字符",
+            "把l 换成x",
+            "s.replace(\"l\",\"x\")"
+          ],
+          [
+            "replaceAll()",
+            "正则替换",
+            "",
+            "s.replaceAll(\"[aeiou]\", \"*\"); 把所有元音替换成*.\ns.replaceAll(\"\\\\s\",\"\")\ns.replaceAll(\"\\\\d\", \"\");删除所有数字，\ns.replaceAll(\"[^a-zA-Z]\", \"\");只保留字母"
+          ],
+          [
+            "trim()",
+            "去除首尾空格",
+            "s.trim()"
+          ],
+          [
+            "toLowerCase()",
+            "转小写",
+            "",
+            "\"HELLO\".toLowerCase()"
+          ],
+          [
+            "toUpperCase()",
+            "转大写",
+            "",
+            "\"hi\".toUpperCase()"
+          ],
+          [
+            "s1.equals(s2)",
+            "字符串比较",
+            "s1==s2 错误的，",
+            "正确是 s1.equals(s2)"
+          ],
+          [
+            "s1.equalsIgnoreCase(s2)",
+            "忽略大小写"
+          ],
+          [
+            "Integer.parseInt()",
+            "String转数字,String → int",
+            "parseInt 返回基本类型，\nvalueOf 返回对象。",
+            "int n = Integer.parseInt(\"10\");"
+          ],
+          [
+            "Integer.valueOf()",
+            "",
+            "返回的是 对象 Integer。",
+            "String s = \"123\";\n\nInteger n = Integer.valueOf(s);"
+          ],
+          [
+            "String.valueOf()",
+            "将任意类型转换为字符串。",
+            "123 → \"123\"\ntrue → \"true\"\n'A' → \"A\"",
+            "int n=123;\nString s = String.valueOf(n);\nSystem.out.println(s);// \"123\""
+          ],
+          [
+            "Integer.toString",
+            "将int转成字符串",
+            "只适用于要转换的数字是int",
+            "String b = Integer.toString(123);"
+          ],
+          [
+            "stringbuilder.append(\"hi\")",
+            "拼接字符"
+          ],
+          [
+            "sb.insert(0,\"A\")",
+            "插入A到0的位置"
+          ],
+          [
+            "sb.delete(1,3)",
+            "删除 index 1 到 index 3 之间的字符（不包括 3）",
+            "String是不可变的。",
+            "StringBuilder sb = new StringBuilder(\"abcdef\");\nsb.delete(1, 3);\nSystem.out.println(sb)//adef"
+          ],
+          [
+            "sb.deleteCharAt(index);",
+            "删除单个字符",
+            "删除最后一个字符：\nsb.deleteCharAt(sb.length() - 1);",
+            "StringBuilder sb = new StringBuilder(\"hello\");\nsb.deleteCharAt(1);\nSystem.out.println(sb); //hllo"
+          ],
+          [
+            "sb.reverse()",
+            "将 StringBuilder 中的字符顺序全部反转",
+            "它直接修改原对象，不会创建新对象。",
+            "String reversed = new StringBuilder(\"world\").reverse().toString();\nSystem.out.println(reversed);//dlrow"
+          ],
+          [
+            "sb.toString()",
+            "转回字符串"
+          ],
+          [
+            "sb.setCharAt(0,\"y\"）",
+            "设置字符在指定位置，把y指定在第一个位置"
+          ],
+          [
+            "StringBuilder sb = new StringBuilder(\"Hello\");\nString s = sb.toString();",
+            "把可变字符串转换为不可变 String"
+          ],
+          [
+            "",
+            "String",
+            "StringBuilder",
+            "StringBuffer"
+          ],
+          [
+            "是否可变",
+            "❌ 不可变",
+            "✅ 可变",
+            "✅ 可变"
+          ],
+          [
+            "线程安全",
+            "✅ 安全",
+            "❌ 不安全",
+            "✅ 安全"
+          ],
+          [
+            "性能",
+            "⭐ 最慢",
+            "⭐⭐⭐ 最快",
+            "⭐⭐ 较慢"
+          ],
+          [
+            "存储位置",
+            "字符串常量池",
+            "堆",
+            "堆"
+          ],
+          [
+            "适合频繁修改",
+            "❌",
+            "✅",
+            "✅"
+          ],
+          [
+            "同步锁",
+            "无",
+            "无",
+            "有（synchronized）"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": true
+      }
+    ]
+  },
+  {
+    "id": "char-3",
+    "title": "char",
+    "rowCount": 21,
+    "preview": "char 本质是一个整数（Unicode 编码）\n运算时会自动提升为 int（类型提升）\n小于 int 的类型（byte / short / char）参与运算 → 自动转成 int\nchar 比较按 Unicode：'a' > 'A'  // true\n\nchar a = 'A'; // 65\nchar b = 'B'; // 66\n\nint result = a + b;",
+    "blocks": [
+      {
+        "type": "notes",
+        "rows": [
+          "char 本质是一个整数（Unicode 编码）\n运算时会自动提升为 int（类型提升）\n小于 int 的类型（byte / short / char）参与运算 → 自动转成 int\nchar 比较按 Unicode：'a' > 'A'  // true\n\nchar a = 'A'; // 65\nchar b = 'B'; // 66\n\nint result = a + b;"
+        ]
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "int n = c - '0'",
+            "char变成int",
+            "",
+            "char c = '7';int n = c - '0';   // 7"
+          ],
+          [
+            "char c = (char) (n + '0');\nASCII/Unicode → 字符：(char)n\n数字 0-9 → 字符 '0'-'9'，最常用：(char)(n + '0')",
+            "int变成char，必须强转 (char)",
+            "数字 0-9 → 字符 '0'-'9'，最常用：(char)(n + '0')\n如果你有整数值（0-127）想得到对应字符：\nint n = 65;\nchar c = (char) n;\nSystem.out.println(c);  // 输出 'A'\nASCII/Unicode → 字符：(char)n",
+            "int n = 5;\nchar c = (char) (n + '0');\nSystem.out.println(c);  // 输出 '5'"
+          ],
+          [
+            "res = res * 10 + (c - '0');",
+            "构造数字回文 / 字符串编码：",
+            "",
+            "String s = \"123\";\nint res = 0;\n\nfor(char c : s.toCharArray()){\n    res = res * 10 + (c - '0');\n}//把字符数字拼接到整数末尾"
+          ],
+          [
+            "(char)('A' + n - 1)",
+            "数字映射字母",
+            "n=1 → 'A' + 0 → 'A'",
+            "for (int n = 1; n <= 26; n++) {\n    char letter = (char) ('A' + n - 1);\n    System.out.print(letter + \" \"); \n}//A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
+          ],
+          [
+            "(char)('A' + (n-1)%26)",
+            "循环映射字母",
+            "n>26 循环映射 A-Z"
+          ],
+          [
+            "int index = c - 'a';",
+            "字母转下标",
+            "",
+            "char c = 'c';\n\nint index = c - 'a';\n\nSystem.out.println(index);"
+          ],
+          [
+            "(char)(i + 'a');",
+            "把索引下标变回字母",
+            "",
+            "\"int i = 2; // index是2\nchar letter = (char)(i + 'a');\""
+          ],
+          [
+            "Character.isLetterOrDigit('a')",
+            "判断 c 是否是 字母或数字",
+            "",
+            "\"Character.isLetterOrDigit('a')  // true\nCharacter.isLetterOrDigit('7')  // true\nCharacter.isLetterOrDigit('%')  // false\nCharacter.isLetterOrDigit(' ')  // false\""
+          ],
+          [
+            "Character.isDigit(c)",
+            "判断是否是数字字符"
+          ],
+          [
+            "Character.isLetter",
+            "判断是否是字母"
+          ],
+          [
+            "Character.isWhitespace()",
+            "判断空白字符，去空格\n字符串清洗"
+          ],
+          [
+            "Character.isUpperCase()",
+            "是否是大写"
+          ],
+          [
+            "Character.toLowerCase(c);",
+            "变成小写"
+          ],
+          [
+            "\"aeiouAEIOU\".indexOf(c) >= 0",
+            "c 是否是 元音字母 (vowel)",
+            "a e i o u A E I O U\n0 1 2 3 4 …",
+            "if (\"aeiouAEIOU\".indexOf(c) >= 0) {\n    System.out.println(\"是元音\");\n}"
+          ],
+          [
+            "for(char c : s.toCharArray()){\n    freq[c - 'a']++;\n}",
+            "创建一个 26个位置的数组统计字母频率",
+            "[0,0,0,0,0....]数组初始值：'b' - 'a' = 1,所以b就等于1这个下标",
+            "String s = \"banana\";\n\nint[] freq = new int[26];\n\nfor(char c : s.toCharArray()){\n    freq[c - 'a']++;\n}"
+          ],
+          [
+            "char c = 'a';\nString s = Character.toString(c);",
+            "char变成string",
+            "new string其实也是建了新对象，每次string都会建新对象"
+          ],
+          [
+            "char[] arr = {'h','e','l','l','o'};\nString s = new String(arr); //\"hello\"",
+            "char[] → String",
+            "",
+            "\"方法一 char[] arr = {'h','e','l','l','o'};\nString s = new String(arr);\n\nSystem.out.println(s); // hello\"\"\n方法二 char[] arr = {'h','e','l','l','o'};\nString s = String.valueOf(arr);\n\nSystem.out.println(s); // hello\""
+          ],
+          [
+            "String s = \"hello\";\nchar[] arr = s.toCharArray();",
+            "string->char[].会创建数组",
+            "使用 charAt()（不创建数组）"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": true
+      },
+      {
+        "type": "notes",
+        "rows": [
+          "char[] arr = {'a','b'};\nSystem.out.println(arr);因为 println 对 char[] 做了特殊处理。"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "int-4",
+    "title": "int",
+    "rowCount": 12,
+    "preview": "方法",
+    "blocks": [
+      {
+        "type": "table",
+        "rows": [
+          [
+            "方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "Integer.parseInt()",
+            "String转数字,String → int",
+            "parseInt 返回基本类型，\nvalueOf 返回对象。",
+            "int n = Integer.parseInt(\"10\");"
+          ],
+          [
+            "Integer.valueOf()",
+            "",
+            "返回的是 对象 Integer。",
+            "String s = \"123\";\nInteger n = Integer.valueOf(s);"
+          ],
+          [
+            "Java 的 int 范围是：\nInteger.MAX_VALUE =  2147483647\nInteger.MIN_VALUE = -2147483648",
+            "",
+            "[-2^31 , 2^31 - 1]",
+            "MAX_VALUE / 10 作为临界值，\nresult > MAX_VALUE / 10 → 下一步一定溢出，\n如果 result == MAX_VALUE / 10：\n\t•\tdigit > 7 → 溢出\n\t•\tdigit ≤ 7 → 安全。为什么是 7？因为 MAX_VALUE 的最后一位是 7（2147483647）"
+          ],
+          [
+            "if (\n    (result > Integer.MAX_VALUE / 10) ||\n    (result == Integer.MAX_VALUE / 10 &&\n        digit > Integer.MAX_VALUE % 10)\n)",
+            "判断int 范围溢出",
+            "",
+            "String s = \"2147483647\"; // 正好是 MAX_VALUE\nint result = 0;\nfor(char c : s.toCharArray()){\n    int digit = c - '0';\n    // 检查溢出\n    if(result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE / 10 && digit > 7)){\n        System.out.println(\"溢出\");\n        break;\n    }\n    result = result * 10 + digit;\n}\nSystem.out.println(result);"
+          ],
+          [
+            "c - '0'",
+            "char → int",
+            "",
+            "7' - '0' → 7"
+          ],
+          [
+            "String.valueOf(n)",
+            "int → String",
+            "或 n + \"\"",
+            "123 → \"123\""
+          ],
+          [
+            "Arrays.stream(arr).mapToInt(Integer::intValue).toArray()",
+            "Integer[] → int[]",
+            "对象数组转基本类型数组"
+          ],
+          [
+            "Arrays.stream(arr).boxed().toArray(Integer[]::new)",
+            "int[] → Integer[]",
+            "基本类型转对象数组"
+          ],
+          [
+            "Arrays.stream(arr).boxed().sorted(Comparator.reverseOrder()).mapToInt(i->i).toArray()",
+            "降序",
+            "int[] 不能直接用 Comparator"
+          ],
+          [
+            "Arrays.stream(arr).max().getAsInt()",
+            "最大值 / 最小值",
+            "",
+            "[1,2,3] → 3"
+          ],
+          [
+            "int[] freq = new int[26]; freq[c-'a']++;",
+            "字母 a-z 统计",
+            "字符 → 数字映射"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": true
+      }
+    ]
+  },
+  {
+    "id": "sheet2-5",
+    "title": "Sheet2",
+    "rowCount": 16,
+    "preview": "基本类型流是什么？",
+    "blocks": [
+      {
+        "type": "notes",
+        "rows": [
+          "基本类型流是什么？",
+          "在 Java 8 引入的 Stream API 中，流（Stream）是用来操作数据集合的。\n\t•\t普通对象流（Object Stream） → Stream<T>\n\t•\t元素是对象，比如 Stream<String> 或 Stream<Integer>\n\t•\t基本类型流（Primitive Stream） → IntStream, LongStream, DoubleStream，不能直接用泛型\n\t•\t元素是 Java 的基本类型（int、long、double）\n\t•\t目的是 性能优化，避免频繁装箱/拆箱",
+          "什么时候用基本类型流？",
+          "处理大量数字 → 提高性能",
+          "只关心数字运算 → sum(), max(), average()",
+          "避免频繁装箱/拆箱",
+          "int[] a = {1, 2, 3};",
+          "Integer[] b = {1, 2, 3};",
+          "👉 a 存的是数字\n👉 b 存的是对象",
+          "int x = Integer.parseInt(\"10\");//返回：基本类型 int",
+          "Integer a = Integer.valueOf(10);//返回：对象 Integer\nInteger b = Integer.valueOf(\"123\");\n\nSystem.out.println(a);  // 10\nSystem.out.println(b);  // 123",
+          "反转整数 = 取余 + 除10 + 构建新数",
+          "1.\t统计频率：getOrDefault + put 或 merge\n\t2.\t查找 complement / 组合：containsKey\n\t3.\t分组：computeIfAbsent + List/Set\n\t4.\t滑动窗口 + HashMap：存字符索引\n\t5.\t记录最新位置 / 索引：put 直接覆盖",
+          "移动窗口的公式",
+          "nums[i + k - 1],  k即窗口的size",
+          "比如[1, 4, 7, 9] , 窗口尺寸是3个， 【147】，[479]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hashset-6",
+    "title": "hashset",
+    "rowCount": 12,
+    "preview": "方法",
+    "blocks": [
+      {
+        "type": "table",
+        "rows": [
+          [
+            "方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "set.addAll(set2);",
+            "并集，把另一个集合的所有元素加入当前 Set，重复元素自动去掉",
+            "",
+            "Set<Integer> set1 = new HashSet<>();\nset1.add(1);\nset1.add(2);\n\nSet<Integer> set2 = new HashSet<>();\nset2.add(2);\nset2.add(3);\n\nset1.addAll(set2);\nSystem.out.println(set1);//[1, 2, 3]"
+          ],
+          [
+            "set.retainAll(set2);",
+            "交集 共同部分，intersection，保留两个集合的交集",
+            "",
+            "Set<Integer> set1 = new HashSet<>(Set.of(1, 2, 3));\nSet<Integer> set2 = new HashSet<>(Set.of(2, 3, 4));\n\nset1.retainAll(set2);  // 只保留同时在 set1 和 set2 中的元素\n\nSystem.out.println(set1);//[2, 3]"
+          ],
+          [
+            "set.removeAll(set2);",
+            "删除集合中同时存在于另一个集合的元素，差集，[1,2,3] - [2,3,4]\n[1]",
+            "set1.removeAll(set2)\n= 删除 set1 中所有也在 set2 的元素",
+            "Set<Integer> set1 = new HashSet<>(Set.of(1, 2, 3, 4));\nSet<Integer> set2 = new HashSet<>(Set.of(2, 3, 5));\n\nset1.removeAll(set2);  // 删除 set1 中所有在 set2 中的元素\n\nSystem.out.println(set1);//[1, 4]"
+          ],
+          [
+            "containsAll(Collection c)",
+            "是否包含整个集合，返回 boolean",
+            "",
+            "set1.containsAll(set2);"
+          ],
+          [
+            "stream()",
+            "转 Stream",
+            "",
+            "set.stream().filter(n -> n>2).toList();"
+          ],
+          [
+            "toArray(T[] arr)",
+            "转数组",
+            "返回指定类型数组",
+            "Integer[] arr = set.toArray(new Integer[0]);"
+          ],
+          [
+            "clear()",
+            "清空集合",
+            "",
+            "set.clear();"
+          ],
+          [
+            "isEmpty()",
+            "是否为空，返回boolean",
+            "",
+            "set.isEmpty();"
+          ],
+          [
+            "size()",
+            "返回元素个数",
+            "",
+            "set.size();"
+          ],
+          [
+            "contains(Object o)",
+            "是否包含元素",
+            "返回 true → 新增成功，\n重复元素返回 false",
+            "Set<String> set = new HashSet<>();\nset.add(\"apple\");\nset.add(\"banana\");\nset.add(\"orange\");\n\nSystem.out.println(set.contains(\"banana\"));  // true"
+          ],
+          [
+            "add(E e)",
+            "",
+            "",
+            "set.add(5);"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": true
+      }
+    ]
+  },
+  {
+    "id": "hashmap-7",
+    "title": "hashmap",
+    "rowCount": 20,
+    "preview": "方法",
+    "blocks": [
+      {
+        "type": "table",
+        "rows": [
+          [
+            "方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "Map<String, Integer> map = new HashMap<>();",
+            "创建一个空 HashMap"
+          ],
+          [
+            "map.put(\"apple\", 3); // 添加 key=apple, value=3\nmap.put(\"banana\", 5); // 添加\nmap.put(\"apple\", 10); // 更新 key=apple 的值为10",
+            "添加 / 更新元素"
+          ],
+          [
+            "map.put(key, map.getOrDefault(key, 0) + 1);",
+            "统计频率",
+            "如果 key 已存在 → value +1\n如果 key 不存在 → 默认 0 +1 → 放入 1"
+          ],
+          [
+            "map.getOrDefault(\"orange\", 0);",
+            "统计出现次数，获取元素",
+            "int val2 = map.getOrDefault(\"orange\", 0); // 不存在返回0"
+          ],
+          [
+            "map.containsKey(\"apple\"); // true\nmap.containsValue(10);    // true",
+            "判断 key / value",
+            "map.containsKey(\"apple\"); // true\nmap.containsValue(10);    // true"
+          ],
+          [
+            "map.remove(\"banana\");       // 删除 key=banana\nmap.remove(\"apple\", 10);    // 删除 key=apple 且 value=10 的条目",
+            "删除元素"
+          ],
+          [
+            "for (String key : map.keySet()) {\n    System.out.println(key + \" -> \" + map.get(key));\n}",
+            "遍历 key"
+          ],
+          [
+            "for (Integer value : map.values()) {System.out.println(value);}",
+            "遍历value"
+          ],
+          [
+            "for (Map.Entry<String, Integer> entry : map.entrySet()) {\n    System.out.println(entry.getKey() + \" -> \" + entry.getValue());\n}",
+            "遍历Entry"
+          ],
+          [
+            "map.computeIfAbsent(key, k -> value);\n如果没有 key，就创建新的 ArrayList\n            indexMap.computeIfAbsent(c, k -> new ArrayList<>()).add(i);",
+            "分组：computeIfAbsent\nmap.computeIfAbsent(\"A\", k -> new ArrayList<>()).add(1);",
+            "当 value 是 List / Set / Map 时初始化：\nmap.computeIfAbsent(key, k -> new ArrayList<>()).add(value);",
+            "Map<Character, List<String>> map = new HashMap<>();\n\nString[] words = {\"apple\",\"ant\",\"banana\",\"boat\"};\n\nfor(String w : words){\n    char c = w.charAt(0);\n    map.computeIfAbsent(c, k -> new ArrayList<>()).add(w);\n}\n\nSystem.out.println(map);\n------------------------------------\nMap<String, Integer> count = new HashMap<>();\nString[] words = {\"apple\", \"banana\", \"apple\", \"orange\", \"banana\"};\n\nfor (String word : words) {\n    count.computeIfAbsent(word, k -> 0); // 如果没有 key，word就是关键词 ，值初始化为 0\n    count.put(word, count.get(word) + 1); // 再 +1\n}\n\nSystem.out.println(count);"
+          ],
+          [
+            "map.putIfAbsent(key, value);",
+            "putIfAbsent只在不存在时放入，如果 key 已存在 → 不覆盖，初始化默认值",
+            "需要你自己创建 value，\nput() 会覆盖旧值。",
+            "Map<String, List<Integer>> map = new HashMap<>();\nmap.putIfAbsent(\"A\", new ArrayList<>());\nmap.get(\"A\").add(1);\nmap.putIfAbsent(\"A\", new ArrayList<>());\nmap.get(\"A\").add(2);\nSystem.out.println(map);//{A=[1, 2]}\n------------------------------------------\nMap<String, Integer> map = new HashMap<>();\nmap.put(\"A\", 10);\nmap.putIfAbsent(\"A\", 20);   // A 已存在，不会覆盖\nmap.putIfAbsent(\"B\", 30);   // B 不存在，会添加\nSystem.out.println(map);//{A=10, B=30} 因为A已经有了，所以即使加进去也没用"
+          ],
+          [
+            "map.replace(key, oldVal, newVal)",
+            "替换指定 key 的值（如果值是 oldVal）"
+          ],
+          [
+            "map.clear()",
+            "清空整个 Map"
+          ],
+          [
+            "map.isEmpty()",
+            "判断是否为空"
+          ],
+          [
+            "map.merge(key, value, BiFunction)",
+            "合并 value，例如累加频率"
+          ],
+          [
+            "map.forEach((k,v) -> {})",
+            "Java 8 lambda 遍历"
+          ],
+          [
+            "map.merge(key, 1, Integer::sum);",
+            "如果没有key，就1，有的话， 就累加sum",
+            "merge（最优雅计数法）计数 & 累加，多用于字符统计，找重复元素"
+          ],
+          [
+            "map.merge(key, 1, Integer::sum);",
+            "字符统计",
+            "",
+            "Map<Character, Integer> count = new HashMap<>();\nfor (char c : \"banana\".toCharArray()) {\n    count.merge(c, 1, Integer::sum);\n}\nSystem.out.println(count);//{b=1, a=3, n=2}\n-------------------------------\nif (map.merge(num, 1, Integer::sum) > 1) {\n    // duplicate\n}"
+          ],
+          [
+            "map.compute(key, (k, v) -> v == null ? 1 : v + 1);",
+            "compute（万能函数），功能和 getOrDefault 类似，但更灵活。\t统计频率",
+            "如果 key 不存在 → value = 1\n如果 key 已存在 → value + 1",
+            "Map<Character, Integer> map = new HashMap<>();\n\nfor(char c : \"banana\".toCharArray()){\n    map.compute(c, (k, v) -> v == null ? 1 : v + 1);\n}\n\nSystem.out.println(map);//{b=1, a=3, n=2}"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": false
+      }
+    ]
+  },
+  {
+    "id": "priorityqueue-8",
+    "title": "PriorityQueue",
+    "rowCount": 16,
+    "preview": "priorityqueue： 一个按优先级自动排序的队列\n\t•\t不是 FIFO\n\t•\t每次取出的都是 优先级最高的元素",
+    "blocks": [
+      {
+        "type": "notes",
+        "rows": [
+          "priorityqueue： 一个按优先级自动排序的队列\n\t•\t不是 FIFO\n\t•\t每次取出的都是 优先级最高的元素"
+        ]
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "new PriorityQueue<>()",
+            "创建最小堆",
+            "默认 小顶堆",
+            "PriorityQueue<Integer> pq = new PriorityQueue<>();\nPriorityQueue<Integer> pq = new PriorityQueue<>((a,b) -> count.get(a) - count.get(b));"
+          ],
+          [
+            "new PriorityQueue<>(Comparator.reverseOrder())",
+            "创建最大堆",
+            "常用于 TopK｜\nPriorityQueue<Integer> maxHeap =new PriorityQueue<>((a, b) -> b - a);",
+            "PriorityQueue<Integer> pq =\n        new PriorityQueue<>(Comparator.reverseOrder());\n\npq.offer(5);\npq.offer(2);\npq.offer(8);\n852\nSystem.out.println(pq.poll());//8"
+          ],
+          [
+            "offer(e)",
+            "添加元素",
+            "",
+            "pq.offer(5);"
+          ],
+          [
+            "add(e)",
+            "添加元素与 offer 类似",
+            "",
+            "pq.add(10);"
+          ],
+          [
+            "peek()",
+            "查看堆顶",
+            "返回最小值，不删除",
+            "pq.peek();"
+          ],
+          [
+            "pq.poll();",
+            "取出堆顶,同时删除",
+            "删除并返回最小值",
+            "PriorityQueue<Integer> pq = new PriorityQueue<>();\npq.offer(5);\npq.offer(2);\npq.offer(8);\nSystem.out.println(pq.peek()); // 2\nSystem.out.println(pq.poll()); // 2\nSystem.out.println(pq.poll()); // 5"
+          ],
+          [
+            "remove()",
+            "删除堆顶,",
+            "空时会报错",
+            "pq.remove();"
+          ],
+          [
+            "size()",
+            "当前元素数量",
+            "",
+            "pq.size();"
+          ],
+          [
+            "isEmpty()",
+            "是否为空",
+            "",
+            "pq.isEmpty();"
+          ],
+          [
+            "clear()",
+            "清空队列",
+            "",
+            "pq.clear();"
+          ],
+          [
+            "contains(x)",
+            "是否存在元素\nO(n)",
+            "",
+            "pq.contains(5);"
+          ],
+          [
+            "如果要求第 K 小怎么办？",
+            "",
+            "",
+            "PriorityQueue<Integer> pq =\n        new PriorityQueue<>(Collections.reverseOrder());变成大顶堆\""
+          ],
+          [
+            "PriorityQueue((a,b)->map.get(a)-map.get(b))",
+            "按 map value 排序，value小的在堆顶，升序",
+            "",
+            "PriorityQueue<Integer> pq =new PriorityQueue<>(Comparator.comparingInt(map::get));"
+          ],
+          [
+            "PriorityQueue<Integer> pq =\n    new PriorityQueue<>((a,b) -> map.get(b) - map.get(a));",
+            "按 map value 排序，value大的在堆顶，降序",
+            "PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.comparingInt(map::get));",
+            "PriorityQueue<Integer> pq =\n    new PriorityQueue<>(Comparator.comparingInt(map::get).reversed());"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": true
+      }
+    ]
+  },
+  {
+    "id": "stream-9",
+    "title": "stream",
+    "rowCount": 30,
+    "preview": "Stream：\nArrays.stream(nums);   // 数组\nlist.stream();         // 集合\nStream.of(1,2,3);      // 手动创建",
+    "blocks": [
+      {
+        "type": "notes",
+        "rows": [
+          "Stream：\nArrays.stream(nums);   // 数组\nlist.stream();         // 集合\nStream.of(1,2,3);      // 手动创建"
+        ]
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "Stream.of()",
+            "手动创建",
+            "测试 / 临时数据",
+            "Stream.of(1, 2, 3, 4)\n.forEach(System.out::println);"
+          ],
+          [
+            "Arrays.stream(nums)",
+            "来源数组"
+          ],
+          [
+            "list.stream()",
+            "来源集合"
+          ],
+          [
+            "reduce()",
+            "求和累加",
+            "int sum = list.stream()\n.reduce(0, (a,b) -> a + b);",
+            "int sum =\nStream.of(1,2,3,4)\n.reduce(0, (a,b) -> a + b);\nSystem.out.println(sum); // 10"
+          ],
+          [
+            ".boxed().toList()",
+            "int[] → List",
+            "Arrays.stream + boxed",
+            "int[] nums = {1,2,3,4};\nList<Integer> list =\nArrays.stream(nums)\n.boxed().toList();\nSystem.out.println(list); // [1,2,3,4]"
+          ],
+          [
+            "Arrays.asList()",
+            "Integer[] → List",
+            "数组 → List       Arrays.asList",
+            "Integer[] arr = {1,2,3};\nList<Integer> list = Arrays.asList(arr);\nSystem.out.println(list); // [1,2,3]"
+          ],
+          [
+            "Arrays.asList",
+            "String → List",
+            "",
+            "String s = \"apple banana orange\";\nList<String> list =Arrays.asList(s.split(\" \"));\nSystem.out.println(list); // [apple, banana, orange]"
+          ],
+          [
+            "Stream.of(1,2,3)\n.toList();",
+            "Stream → List",
+            "Stream → List     toList()",
+            "List<Integer> list =\nStream.of(1,2,3)\n.toList();"
+          ],
+          [
+            "filter(n -> n > 2)\n.boxed().toList();",
+            "filter 后转 List",
+            "",
+            "List<Integer> list =\nArrays.stream(new int[]{1,2,3,4}) .filter(n -> n > 2)\n.boxed().toList();System.out.println(list); // [3,4]"
+          ],
+          [
+            "map转换",
+            "map（转换）",
+            "每个元素转换",
+            "list.stream().map(n -> n * 2)"
+          ],
+          [
+            "mapToInt",
+            "mapToInt（转基本类型）",
+            "转成 IntStream",
+            "list.stream()\n.mapToInt(Integer::intValue)"
+          ],
+          [
+            "distinct",
+            "（去重）",
+            "保留顺序",
+            "list.stream().distinct()"
+          ],
+          [
+            "sorted",
+            "（排序）",
+            "",
+            "list.stream().sorted(); // 升序\nlist.stream().sorted((a,b) -> b - a); // 降序"
+          ],
+          [
+            "limit",
+            "（取前 K 个）",
+            "",
+            "list.stream().limit(3);"
+          ],
+          [
+            "list.stream().skip(2);",
+            "skip（跳过前 n 个）",
+            "",
+            "list.stream().skip(2);"
+          ],
+          [
+            "stream().collect",
+            "",
+            "java8",
+            "list.stream()\n.collect(Collectors.toList());"
+          ],
+          [
+            "stream().count()",
+            "（计数）",
+            "",
+            "long count = list.stream().count();"
+          ],
+          [
+            "findFirst",
+            "",
+            "",
+            "list.stream().filter(n -> n > 2)\n.findFirst().orElse(-1);"
+          ],
+          [
+            "Arrays.stream(nums).sum();",
+            "求合",
+            "IntStream 专属方法"
+          ],
+          [
+            "Arrays.stream(nums).max().getAsInt();",
+            "最大值",
+            "IntStream 专属方法"
+          ],
+          [
+            "Arrays.stream(nums).min().getAsInt();",
+            "最小值",
+            "IntStream 专属方法"
+          ],
+          [
+            "Arrays.stream(nums).average().getAsDouble();",
+            "求平均",
+            "IntStream 专属方法"
+          ],
+          [
+            "Map + Stream",
+            "按 value 排序",
+            "Map + Stream",
+            "map.entrySet().stream()\n.sorted((a,b) -> b.getValue() - a.getValue()).toList();"
+          ],
+          [
+            "map.keySet().stream().toList();",
+            "取 key"
+          ],
+          [
+            "map.values().stream().toList();",
+            "取 value"
+          ],
+          [
+            "map.values()\n.stream().sorted().toList();",
+            "map排序后转 List",
+            "默认升序",
+            "List<Integer> sortedValues = map.values()\n.stream().sorted().toList();\nSystem.out.println(sortedValues);"
+          ],
+          [
+            "map.values()\n.stream().map(String::valueOf).toList()",
+            "map → 其他类型（比如 String）",
+            "",
+            "List<String> strValues = map.values()\n.stream().map(String::valueOf).toList();\n\nSystem.out.println(strValues);//[\"3\", \"5\", \"2\"]"
+          ],
+          [
+            ".toList()",
+            "把 Stream 里的元素收集到一个新的 List 中",
+            "toList() 是 Stream 的终止操作",
+            "List<Integer> list = List.of(1,2,3,4);\n// 筛选大于 2 的元素\nList<Integer> res = list.stream()\n                        .filter(n -> n > 2)\n                        .toList();\nSystem.out.println(res); // [3,4]"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": true
+      }
+    ]
+  }
+]
