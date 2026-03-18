@@ -179,7 +179,7 @@
   {
     "id": "list-1",
     "title": "list",
-    "rowCount": 40,
+    "rowCount": 44,
     "preview": "方法",
     "blocks": [
       {
@@ -206,8 +206,8 @@
           [
             "List.of(...)",
             "",
-            "",
-            "List<Integer> list = List.of(1,2,3);"
+            "List.of 不可修改",
+            "List<Integer> list = List.of(1,2,3);\nlist.add(4); // ❌ 报错"
           ],
           [
             "List.copyOf(list)",
@@ -424,6 +424,29 @@
             "倒序。",
             "reverse = 翻面\nsort(reverseOrder) = 排序（降序）",
             "List<Integer> list = new ArrayList<>(List.of(3,1,2));//// [2,1,3]"
+          ],
+          [
+            "String.join()",
+            "List -> String",
+            "stream写法更灵活\nString res = list.stream()\n      .collect(Collectors.joining(\",\"));",
+            "List<String> list = List.of(\"apple\", \"banana\", \"orange\");\nString res = String.join(\",\", list);或者用"
+          ],
+          [
+            "list.toString();",
+            "list转String，直接 toString（简单但格式固定）",
+            "特殊：无分隔符拼接\nString res = String.join(\"\", list); 输出结果：applebananaorange",
+            "List<Integer> list = List.of(1,2,3);\nString res = list.toString();\nSystem.out.println(res); // [1, 2, 3]"
+          ],
+          [
+            "不同方法list转string",
+            "",
+            "List<String> → String      String.join(\",\", list)\nList<Integer> → String     stream + map + joining\n需要格式控制               Collectors.joining()"
+          ],
+          [
+            "List<Integer> → String",
+            "List<Integer> → String",
+            "需要先转 String，stream + map + joining",
+            "List<Integer> list = List.of(1,2,3);\nString res = list.stream().map(String::valueOf)\n             .collect(Collectors.joining(\",\"));\nSystem.out.println(res); // 1,2,3"
           ]
         ],
         "columnCount": 4,
