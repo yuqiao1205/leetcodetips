@@ -179,7 +179,7 @@
   {
     "id": "list-1",
     "title": "list",
-    "rowCount": 39,
+    "rowCount": 40,
     "preview": "方法",
     "blocks": [
       {
@@ -418,6 +418,12 @@
             "自定义排序（Comparator）",
             "words.stream().sorted(Comparator.comparingInt(String::length)).toList();//可以用方法引用",
             "List<String> words = List.of(\"apple\",\"banana\",\"kiwi\");\n\nList<String> sortedByLength = words.stream().sorted((a, b) -> a.length() - b.length())  // 按长度升序\n.toList();\n\nSystem.out.println(sortedByLength);"
+          ],
+          [
+            "Collections.reverse(list);",
+            "倒序。",
+            "reverse = 翻面\nsort(reverseOrder) = 排序（降序）",
+            "List<Integer> list = new ArrayList<>(List.of(3,1,2));//// [2,1,3]"
           ]
         ],
         "columnCount": 4,
