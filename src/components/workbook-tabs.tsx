@@ -210,8 +210,8 @@ export function WorkbookTabs({ sheets }: WorkbookTabsProps) {
     <>
       <section className="overflow-hidden rounded-[2rem] border border-white/60 bg-white/85 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur">
         <div className="border-b border-slate-200 px-4 py-4 sm:px-6">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex gap-3 overflow-x-auto pb-2 lg:pb-0">
+          <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+            <div className="flex flex-wrap gap-3">
               {editableSheets.map((sheet) => {
                 const isActive = sheet.id === activeSheet.id;
 

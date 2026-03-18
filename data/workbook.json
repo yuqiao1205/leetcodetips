@@ -455,7 +455,89 @@
     ]
   },
   {
-    "id": "string-2",
+    "id": "stack-deque-2",
+    "title": "stack&deque",
+    "rowCount": 12,
+    "preview": "Stack<Integer> stack = new Stack<>(); \nDeque 当 Stack 用：\nDeque<Integer> stack = new ArrayDeque<>();\n后进先出，peek = 看顶，\npop = 拿顶，search = 从顶往下找",
+    "blocks": [
+      {
+        "type": "notes",
+        "rows": [
+          "Stack<Integer> stack = new Stack<>(); \nDeque 当 Stack 用：\nDeque<Integer> stack = new ArrayDeque<>();\n后进先出，peek = 看顶，\npop = 拿顶，search = 从顶往下找\n\nStack 是 legacy 类（历史遗留）\n2.方法是 synchronized → 性能差\n3.官方推荐用 Deque双端队列 替代"
+        ]
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "push()",
+            "入栈",
+            "底 → [1, 2] ← 栈顶",
+            "stack.push(1);stack.push(2);\n//[1, 2]"
+          ],
+          [
+            "pop()",
+            "出栈,stack.pop(); \n// pop 空栈,可能报错",
+            "删除并返回栈顶元素\n原: [1,2], pop → 2\n剩: [1]",
+            "if(!stack.isEmpty()){\n    stack.pop();\n}"
+          ],
+          [
+            "peek()",
+            "查看栈顶",
+            "不删除",
+            "int top = stack.peek();"
+          ],
+          [
+            "isEmpty",
+            "是否为空",
+            "",
+            "stack.isEmpty();"
+          ],
+          [
+            "stack.size();",
+            "大小"
+          ],
+          [
+            "stack.search(2); 查找位置",
+            "返回从栈顶开始的位置（1-based）",
+            "底 → [1, 2, 3] ← 栈顶，\n找不到返回-1",
+            "Stack<Integer> stack = new Stack<>();\nstack.push(1);\nstack.push(2);\nstack.push(3);\nint pos = stack.search(2);\nSystem.out.println(pos);"
+          ],
+          [
+            "逆序（用栈）",
+            "",
+            "",
+            "Stack<Integer> stack = new Stack<>();\nfor(int n : nums){\n    stack.push(n);\n}\nwhile(!stack.isEmpty()){\nSystem.out.println(stack.pop());\n}//输出2，因为从栈顶往下找，base从1"
+          ],
+          [
+            "Deque<Integer> stack = new ArrayDeque<>();",
+            "Deque 当 Stack 用",
+            "它还能当队列用："
+          ],
+          [
+            "",
+            "当队列用先进先出（FIFO）",
+            "不能存 null， 没有 search()",
+            "dq.offer(1);\ndq.offer(2);\ndq.poll(); // 1\ndq.peek(); // 2"
+          ],
+          [
+            "dq.offerFirst(1);  // 头插\ndq.offerLast(2);   // 尾插\n\ndq.pollFirst();    // 头出\ndq.pollLast();     // 尾出",
+            "双端操作（Deque 精髓）"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": true
+      }
+    ]
+  },
+  {
+    "id": "string-3",
     "title": "string",
     "rowCount": 42,
     "preview": "方法",
@@ -709,7 +791,7 @@
     ]
   },
   {
-    "id": "char-3",
+    "id": "char-4",
     "title": "char",
     "rowCount": 21,
     "preview": "char 本质是一个整数（Unicode 编码）\n运算时会自动提升为 int（类型提升）\n小于 int 的类型（byte / short / char）参与运算 → 自动转成 int\nchar 比较按 Unicode：'a' > 'A'  // true\n\nchar a = 'A'; // 65\nchar b = 'B'; // 66\n\nint result = a + b;",
@@ -837,7 +919,7 @@
     ]
   },
   {
-    "id": "int-4",
+    "id": "int-5",
     "title": "int",
     "rowCount": 12,
     "preview": "方法",
@@ -920,7 +1002,7 @@
     ]
   },
   {
-    "id": "sheet2-5",
+    "id": "sheet2-6",
     "title": "Sheet2",
     "rowCount": 16,
     "preview": "基本类型流是什么？",
@@ -949,7 +1031,7 @@
     ]
   },
   {
-    "id": "hashset-6",
+    "id": "hashset-7",
     "title": "hashset",
     "rowCount": 12,
     "preview": "方法",
@@ -1036,7 +1118,7 @@
     ]
   },
   {
-    "id": "hashmap-7",
+    "id": "hashmap-8",
     "title": "hashmap",
     "rowCount": 20,
     "preview": "方法",
@@ -1145,7 +1227,7 @@
     ]
   },
   {
-    "id": "priorityqueue-8",
+    "id": "priorityqueue-9",
     "title": "PriorityQueue",
     "rowCount": 16,
     "preview": "priorityqueue： 一个按优先级自动排序的队列\n\t•\t不是 FIFO\n\t•\t每次取出的都是 优先级最高的元素",
@@ -1256,7 +1338,7 @@
     ]
   },
   {
-    "id": "stream-9",
+    "id": "stream-10",
     "title": "stream",
     "rowCount": 30,
     "preview": "Stream：\nArrays.stream(nums);   // 数组\nlist.stream();         // 集合\nStream.of(1,2,3);      // 手动创建",
