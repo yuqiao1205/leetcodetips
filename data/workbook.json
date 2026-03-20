@@ -179,7 +179,7 @@
   {
     "id": "list-1",
     "title": "list",
-    "rowCount": 44,
+    "rowCount": 45,
     "preview": "方法",
     "blocks": [
       {
@@ -447,6 +447,12 @@
             "List<Integer> → String",
             "需要先转 String，stream + map + joining",
             "List<Integer> list = List.of(1,2,3);\nString res = list.stream().map(String::valueOf)\n             .collect(Collectors.joining(\",\"));\nSystem.out.println(res); // 1,2,3"
+          ],
+          [
+            "List<String> list = new ArrayList<>(Collections.nCopies(3, \"\"));",
+            "创建 List（已知长度）",
+            "要有元素 → 用 nCopies 或 add，new ArrayList<>(n) → 只是容量",
+            "List<Integer> list = new ArrayList<>(Collections.nCopies(5, 0));\nlist.set(2, 100);\nSystem.out.println(list); // [0, 0, 100, 0, 0]"
           ]
         ],
         "columnCount": 4,
@@ -458,7 +464,7 @@
     "id": "stack-deque-2",
     "title": "stack&deque",
     "rowCount": 12,
-    "preview": "Stack<Integer> stack = new Stack<>(); \nDeque 当 Stack 用：\nDeque<Integer> stack = new ArrayDeque<>();\n后进先出，peek = 看顶，\npop = 拿顶，search = 从顶往下找",
+    "preview": "Stack<Integer> stack = new Stack<>(); \nDeque 当 Stack 用：\nDeque<Integer> stack = new ArrayDeque<>();\n后进先出，peek = 看顶，\npop = 拿顶，search = 从顶往下找\n\nStack 是 legacy 类（历史遗留）\n2.方法是 synchronized → 性能差\n3.官方推荐用 Deque双端队列 替代",
     "blocks": [
       {
         "type": "notes",
@@ -539,7 +545,7 @@
   {
     "id": "string-3",
     "title": "string",
-    "rowCount": 42,
+    "rowCount": 43,
     "preview": "方法",
     "blocks": [
       {
@@ -619,7 +625,7 @@
           ],
           [
             "substring(begin)",
-            "截取从 begin 到末尾",
+            "截取从 begin 到末尾，substring(beginIndex) 安全规则：\n✔ 0 <= beginIndex <= length()\n✔ beginIndex == length() → 返回 \"\"\n✔ beginIndex > length() → 越界异常",
             "从索引 6 开始，截取到字符串结尾，\n返回的是 新的字符串。",
             "String s = \"hello world\";\nString sub = s.substring(6);\nSystem.out.println(sub);//world"
           ],
@@ -643,7 +649,7 @@
           ],
           [
             "replace()",
-            "替换字符",
+            "替换字符，String.replace() 会返回一个新的 String",
             "把l 换成x",
             "s.replace(\"l\",\"x\")"
           ],
@@ -783,6 +789,12 @@
             "无",
             "无",
             "有（synchronized）"
+          ],
+          [
+            "stringbuilder.setCharAt(index，character)",
+            "修改某一位字符（只能用于 StringBuilder）",
+            "返回 void，不能赋值。setCharAt 是 Java 里 StringBuilder / StringBuffer 的方法",
+            "StringBuilder sb = new StringBuilder(\"hello\");\nsb.setCharAt(1, 'a');\nSystem.out.println(sb);//hallo"
           ]
         ],
         "columnCount": 4,
