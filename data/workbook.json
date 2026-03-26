@@ -2,7 +2,7 @@
   {
     "id": "array-0",
     "title": "array",
-    "rowCount": 29,
+    "rowCount": 30,
     "preview": "方法",
     "blocks": [
       {
@@ -169,6 +169,12 @@
             "比较两个数组内容是否相等",
             "",
             "int[] a = {1,2,3};\nint[] b = {1,2,3};\nint[] c = {3,2,1};\n\nSystem.out.println(Arrays.equals(a, b)); // true"
+          ],
+          [
+            "Set<String> set = Arrays.stream(words).collect(Collectors.toSet());",
+            "数组 → 流 → 去重 → Set",
+            "",
+            "String[] words = {\"apple\", \"banana\", \"apple\", \"orange\"};\nSet<String> set = Arrays.stream(words).collect(Collectors.toSet());//[\"apple\", \"banana\", \"orange\"]"
           ]
         ],
         "columnCount": 4,
@@ -179,7 +185,7 @@
   {
     "id": "list-1",
     "title": "list",
-    "rowCount": 45,
+    "rowCount": 46,
     "preview": "方法",
     "blocks": [
       {
@@ -453,6 +459,12 @@
             "创建 List（已知长度）",
             "要有元素 → 用 nCopies 或 add，new ArrayList<>(n) → 只是容量",
             "List<Integer> list = new ArrayList<>(Collections.nCopies(5, 0));\nlist.set(2, 100);\nSystem.out.println(list); // [0, 0, 100, 0, 0]"
+          ],
+          [
+            "int[][] ans = new int[result.size()][];  // 1️⃣ 创建二维数组\nans = result.toArray(ans);                // 2️⃣ List → 数组",
+            "List 转成二维数组，List<int[]> → int[][]\n步骤：\n1. 创建 int[][]，第一维长度 = list.size()\n2. 每行 = list.get(i)",
+            "result 是一个 List<int[]>（List 中每个元素是一个数组）所以 ans.length = result.size()",
+            "List<int[]> result = new ArrayList<>();\nresult.add(new int[]{1,2});\nresult.add(new int[]{3,4,5});\nresult.add(new int[]{6});"
           ]
         ],
         "columnCount": 4,
