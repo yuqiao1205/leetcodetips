@@ -545,7 +545,7 @@
   {
     "id": "string-3",
     "title": "string",
-    "rowCount": 43,
+    "rowCount": 44,
     "preview": "方法",
     "blocks": [
       {
@@ -795,6 +795,12 @@
             "修改某一位字符（只能用于 StringBuilder）",
             "返回 void，不能赋值。setCharAt 是 Java 里 StringBuilder / StringBuffer 的方法",
             "StringBuilder sb = new StringBuilder(\"hello\");\nsb.setCharAt(1, 'a');\nSystem.out.println(sb);//hallo"
+          ],
+          [
+            "a.compareTo(b)/compareToIgnoreCase（忽略大小写）",
+            "··返回 负数 → 当前字符串小于 anotherString\n··返回 0 → 两个字符串相等\n··返回 正数 → 当前字符串大于 anotherString",
+            "",
+            "String x = \"abc\";\nString y = \"abd\";\nSystem.out.println(x.compareTo(y)); // -1 → 因为 'c' < 'd'"
           ]
         ],
         "columnCount": 4,
@@ -805,7 +811,7 @@
   {
     "id": "char-4",
     "title": "char",
-    "rowCount": 21,
+    "rowCount": 22,
     "preview": "char 本质是一个整数（Unicode 编码）\n运算时会自动提升为 int（类型提升）\n小于 int 的类型（byte / short / char）参与运算 → 自动转成 int\nchar 比较按 Unicode：'a' > 'A'  // true\n\nchar a = 'A'; // 65\nchar b = 'B'; // 66\n\nint result = a + b;",
     "blocks": [
       {
@@ -917,6 +923,12 @@
             "String s = \"hello\";\nchar[] arr = s.toCharArray();",
             "string->char[].会创建数组",
             "使用 charAt()（不创建数组）"
+          ],
+          [
+            "比较单个字符chr == 'c'",
+            "char 比较要用 ==,string比较用equals",
+            "",
+            "if(c == 'A') {\n    countA++;\n} else if(c == 'L') {\n    countL++;\n}"
           ]
         ],
         "columnCount": 4,
