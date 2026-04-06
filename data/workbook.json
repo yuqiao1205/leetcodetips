@@ -15,8 +15,8 @@
             "例子"
           ],
           [
-            "Arrays.sort(arr)",
-            "排序",
+            "Arrays.sort(arr)\nArrays.sort(words, (a, b) -> {\n            return a.charAt(a.length() - 1) - b.charAt(b.length() - 1);\n        });",
+            "排序，或 指定的元素在数组里比较",
             "升序排序只好升序，降序要另外实现"
           ],
           [
@@ -557,7 +557,7 @@
   {
     "id": "string-3",
     "title": "string",
-    "rowCount": 44,
+    "rowCount": 45,
     "preview": "方法",
     "blocks": [
       {
@@ -654,9 +654,9 @@
             "String s = \"I love Java\";\nString[] arr = s.split(\" \");\nSystem.out.println(Arrays.toString(arr));//[I, love, Java]"
           ],
           [
-            "String.join(delimiter, list) 分隔符，要拼接的字符串集合",
+            "String.join(delimiter, list) 分隔符，要拼接的字符串集合or array",
             "数组/List 拼接成 字符串\n返回string",
-            "",
+            "String.join(分隔符, 集合/数组)",
             "List<String> list = Arrays.asList(\"2026\", \"03\", \"15\");String result = String.join(\"-\", list);System.out.println(result);//2026-03-15"
           ],
           [
@@ -679,8 +679,8 @@
           [
             "toLowerCase()",
             "转小写",
-            "",
-            "\"HELLO\".toLowerCase()"
+            "返回一个新的字符串",
+            "String str = \"Hello World!\";\nString lower = str.toLowerCase()"
           ],
           [
             "toUpperCase()",
@@ -723,8 +723,8 @@
             "String b = Integer.toString(123);"
           ],
           [
-            "stringbuilder.append(\"hi\")",
-            "拼接字符"
+            "stringbuilder.append(\"hi\")\nsb.append(word, 0, word.length() - 1).append(\" \");",
+            "拼接字符\n或者"
           ],
           [
             "sb.insert(0,\"A\")",
@@ -813,6 +813,11 @@
             "··返回 负数 → 当前字符串小于 anotherString\n··返回 0 → 两个字符串相等\n··返回 正数 → 当前字符串大于 anotherString",
             "",
             "String x = \"abc\";\nString y = \"abd\";\nSystem.out.println(x.compareTo(y)); // -1 → 因为 'c' < 'd'"
+          ],
+          [
+            "sb.append(word, 0, word.length() - 1);",
+            "等价于：\nsb.append(word.substring(0, word.length() - 1));",
+            "append(字符串, 起始下标, 结束下标)"
           ]
         ],
         "columnCount": 4,
@@ -1156,7 +1161,7 @@
   {
     "id": "hashmap-8",
     "title": "hashmap",
-    "rowCount": 20,
+    "rowCount": 21,
     "preview": "方法",
     "blocks": [
       {
@@ -1255,6 +1260,11 @@
             "compute（万能函数），功能和 getOrDefault 类似，但更灵活。\t统计频率",
             "如果 key 不存在 → value = 1\n如果 key 已存在 → value + 1",
             "Map<Character, Integer> map = new HashMap<>();\n\nfor(char c : \"banana\".toCharArray()){\n    map.compute(c, (k, v) -> v == null ? 1 : v + 1);\n}\n\nSystem.out.println(map);//{b=1, a=3, n=2}"
+          ],
+          [
+            "1.\tmap.getOrDefault(c, someDefault)\n\t2.\tmap.putIfAbsent(c, nextLetter)",
+            "•\t如果 c 在 map 中有值，返回值\n•\t如果没有，返回 someDefault",
+            "putIfAbsent\n•\t如果 c 不存在，则放入 nextLetter\n•\t如果已经存在，保持原来的映射，这样就天然忽略重复字母，只给第一次出现的字母分配映射。"
           ]
         ],
         "columnCount": 4,
