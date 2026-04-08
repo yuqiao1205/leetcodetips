@@ -475,7 +475,7 @@
   {
     "id": "stack-deque-2",
     "title": "stack&deque",
-    "rowCount": 12,
+    "rowCount": 15,
     "preview": "Stack<Integer> stack = new Stack<>(); \nDeque 当 Stack 用：\nDeque<Integer> stack = new ArrayDeque<>();\n后进先出，peek = 看顶，\npop = 拿顶，search = 从顶往下找\n\nStack 是 legacy 类（历史遗留）\n2.方法是 synchronized → 性能差\n3.官方推荐用 Deque双端队列 替代",
     "blocks": [
       {
@@ -545,8 +545,23 @@
             "dq.offer(1);\ndq.offer(2);\ndq.poll(); // 1\ndq.peek(); // 2"
           ],
           [
-            "dq.offerFirst(1);  // 头插\ndq.offerLast(2);   // 尾插\n\ndq.pollFirst();    // 头出\ndq.pollLast();     // 尾出",
-            "双端操作（Deque 精髓）"
+            "dq.offerFirst(1);  // 头插\ndq.offerLast(2);   // 尾插\naddLast(x) // 尾部插入\nremoveLast() // 删除尾部\npollLast() // 删除尾部\npeekLast() // 查看尾部\ndq.pollFirst();    // 头出\ndq.pollLast();     // 尾出\npeekFirst().  //查看头部\nqueue.peek() → 头\nqueue.poll() → 头（并删除）\nqueue.remove() = 删除“队头”（最前面的元素）",
+            "双端操作（Deque 精髓） \npollFirst() :删除头部（空返回 null）"
+          ],
+          [
+            "deque.offerLast(1);\ndeque.offerLast(2);\ndeque.pollFirst(); // 1",
+            "作为队列（FIFO）👉 先进先出"
+          ],
+          [
+            "deque.push(1);   // = addFirst\ndeque.push(2);\ndeque.pop();     // 2",
+            "作为栈（LIFO） 后进先出",
+            "用于滑动窗口最大值 / 最小值。\t把小的都踢掉（没用了）\n\t•\t保证队列是“单调的”",
+            "while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {\n    deque.pollLast(); // 保持单调递减\n}\ndeque.offerLast(i);"
+          ],
+          [
+            "窗口左边界 = i - k + 1\n窗口范围 = [i - k + 1, i]",
+            "k是窗口大小比如3个元素长度",
+            "从尾部删，维护单调性（淘汰“没用的数”）\n从头部删，移除“过期的数”"
           ]
         ],
         "columnCount": 4,
