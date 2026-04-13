@@ -2,7 +2,7 @@
   {
     "id": "array-0",
     "title": "array",
-    "rowCount": 30,
+    "rowCount": 29,
     "preview": "方法",
     "blocks": [
       {
@@ -15,8 +15,8 @@
             "例子"
           ],
           [
-            "Arrays.sort(arr)\nArrays.sort(words, (a, b) -> {\n            return a.charAt(a.length() - 1) - b.charAt(b.length() - 1);\n        });",
-            "排序，或 指定的元素在数组里比较",
+            "Arrays.sort(arr)",
+            "排序",
             "升序排序只好升序，降序要另外实现"
           ],
           [
@@ -169,12 +169,6 @@
             "比较两个数组内容是否相等",
             "",
             "int[] a = {1,2,3};\nint[] b = {1,2,3};\nint[] c = {3,2,1};\n\nSystem.out.println(Arrays.equals(a, b)); // true"
-          ],
-          [
-            "Set<String> set = Arrays.stream(words).collect(Collectors.toSet());",
-            "数组 → 流 → 去重 → Set",
-            "",
-            "String[] words = {\"apple\", \"banana\", \"apple\", \"orange\"};\nSet<String> set = Arrays.stream(words).collect(Collectors.toSet());//[\"apple\", \"banana\", \"orange\"]"
           ]
         ],
         "columnCount": 4,
@@ -185,7 +179,7 @@
   {
     "id": "list-1",
     "title": "list",
-    "rowCount": 47,
+    "rowCount": 44,
     "preview": "方法",
     "blocks": [
       {
@@ -453,24 +447,6 @@
             "List<Integer> → String",
             "需要先转 String，stream + map + joining",
             "List<Integer> list = List.of(1,2,3);\nString res = list.stream().map(String::valueOf)\n             .collect(Collectors.joining(\",\"));\nSystem.out.println(res); // 1,2,3"
-          ],
-          [
-            "List<String> list = new ArrayList<>(Collections.nCopies(3, \"\"));",
-            "创建 List（已知长度）",
-            "要有元素 → 用 nCopies 或 add，new ArrayList<>(n) → 只是容量",
-            "List<Integer> list = new ArrayList<>(Collections.nCopies(5, 0));\nlist.set(2, 100);\nSystem.out.println(list); // [0, 0, 100, 0, 0]"
-          ],
-          [
-            "int[][] ans = new int[result.size()][];  // 1️⃣ 创建二维数组\nans = result.toArray(ans);                // 2️⃣ List → 数组",
-            "List 转成二维数组，List<int[]> → int[][]\n步骤：\n1. 创建 int[][]，第一维长度 = list.size()\n2. 每行 = list.get(i)",
-            "result 是一个 List<int[]>（List 中每个元素是一个数组）所以 ans.length = result.size()",
-            "List<int[]> result = new ArrayList<>();\nresult.add(new int[]{1,2});\nresult.add(new int[]{3,4,5});\nresult.add(new int[]{6});"
-          ],
-          [
-            "list.toArray(new String[0])",
-            "List<String> → String[]",
-            "",
-            "List<Integer> list = Arrays.asList(1, 2, 3);\nInteger[] arr = list.toArray(new Integer[0]);"
           ]
         ],
         "columnCount": 4,
@@ -481,8 +457,8 @@
   {
     "id": "stack-deque-2",
     "title": "stack&deque",
-    "rowCount": 15,
-    "preview": "Stack<Integer> stack = new Stack<>(); \nDeque 当 Stack 用：\nDeque<Integer> stack = new ArrayDeque<>();\n后进先出，peek = 看顶，\npop = 拿顶，search = 从顶往下找\n\nStack 是 legacy 类（历史遗留）\n2.方法是 synchronized → 性能差\n3.官方推荐用 Deque双端队列 替代",
+    "rowCount": 12,
+    "preview": "Stack<Integer> stack = new Stack<>(); \nDeque 当 Stack 用：\nDeque<Integer> stack = new ArrayDeque<>();\n后进先出，peek = 看顶，\npop = 拿顶，search = 从顶往下找",
     "blocks": [
       {
         "type": "notes",
@@ -551,23 +527,8 @@
             "dq.offer(1);\ndq.offer(2);\ndq.poll(); // 1\ndq.peek(); // 2"
           ],
           [
-            "dq.offerFirst(1);  // 头插\ndq.offerLast(2);   // 尾插\naddLast(x) // 尾部插入\nremoveLast() // 删除尾部\npollLast() // 删除尾部\npeekLast() // 查看尾部\ndq.pollFirst();    // 头出\ndq.pollLast();     // 尾出\npeekFirst().  //查看头部\nqueue.peek() → 头\nqueue.poll() → 头（并删除）\nqueue.remove() = 删除“队头”（最前面的元素）",
-            "双端操作（Deque 精髓） \npollFirst() :删除头部（空返回 null）"
-          ],
-          [
-            "deque.offerLast(1);\ndeque.offerLast(2);\ndeque.pollFirst(); // 1",
-            "作为队列（FIFO）👉 先进先出"
-          ],
-          [
-            "deque.push(1);   // = addFirst\ndeque.push(2);\ndeque.pop();     // 2",
-            "作为栈（LIFO） 后进先出",
-            "用于滑动窗口最大值 / 最小值。\t把小的都踢掉（没用了）\n\t•\t保证队列是“单调的”",
-            "while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {\n    deque.pollLast(); // 保持单调递减\n}\ndeque.offerLast(i);"
-          ],
-          [
-            "窗口左边界 = i - k + 1\n窗口范围 = [i - k + 1, i]",
-            "k是窗口大小比如3个元素长度",
-            "从尾部删，维护单调性（淘汰“没用的数”）\n从头部删，移除“过期的数”"
+            "dq.offerFirst(1);  // 头插\ndq.offerLast(2);   // 尾插\n\ndq.pollFirst();    // 头出\ndq.pollLast();     // 尾出",
+            "双端操作（Deque 精髓）"
           ]
         ],
         "columnCount": 4,
@@ -578,7 +539,7 @@
   {
     "id": "string-3",
     "title": "string",
-    "rowCount": 47,
+    "rowCount": 42,
     "preview": "方法",
     "blocks": [
       {
@@ -658,7 +619,7 @@
           ],
           [
             "substring(begin)",
-            "截取从 begin 到末尾，substring(beginIndex) 安全规则：\n✔ 0 <= beginIndex <= length()\n✔ beginIndex == length() → 返回 \"\"\n✔ beginIndex > length() → 越界异常",
+            "截取从 begin 到末尾",
             "从索引 6 开始，截取到字符串结尾，\n返回的是 新的字符串。",
             "String s = \"hello world\";\nString sub = s.substring(6);\nSystem.out.println(sub);//world"
           ],
@@ -670,19 +631,19 @@
           ],
           [
             "split(regex)",
-            "分割字符串，字符串 → 数组\nsplit 使用的是正则表达式，像 \".\" 这样的字符需要用 Pattern.quote 转义，否则会匹配所有字符导致结果错误",
+            "分割字符串，字符串 → 数组",
             "按空格 \" \" 把字符串拆分成\n多个字符串，返回 String[] 数组。用正则更好：String s = \"I  love   Java\";\nString[] arr = s.split(\"\\\\s+\");",
             "String s = \"I love Java\";\nString[] arr = s.split(\" \");\nSystem.out.println(Arrays.toString(arr));//[I, love, Java]"
           ],
           [
-            "String.join(delimiter, list) 分隔符，要拼接的字符串集合or array",
+            "String.join(delimiter, list) 分隔符，要拼接的字符串集合",
             "数组/List 拼接成 字符串\n返回string",
-            "String.join(分隔符, 集合/数组)",
+            "",
             "List<String> list = Arrays.asList(\"2026\", \"03\", \"15\");String result = String.join(\"-\", list);System.out.println(result);//2026-03-15"
           ],
           [
             "replace()",
-            "替换字符，String.replace() 会返回一个新的 String",
+            "替换字符",
             "把l 换成x",
             "s.replace(\"l\",\"x\")"
           ],
@@ -700,8 +661,8 @@
           [
             "toLowerCase()",
             "转小写",
-            "返回一个新的字符串",
-            "String str = \"Hello World!\";\nString lower = str.toLowerCase()"
+            "",
+            "\"HELLO\".toLowerCase()"
           ],
           [
             "toUpperCase()",
@@ -744,8 +705,8 @@
             "String b = Integer.toString(123);"
           ],
           [
-            "stringbuilder.append(\"hi\")\nsb.append(word, 0, word.length() - 1).append(\" \");",
-            "拼接字符\n或者"
+            "stringbuilder.append(\"hi\")",
+            "拼接字符"
           ],
           [
             "sb.insert(0,\"A\")",
@@ -822,33 +783,6 @@
             "无",
             "无",
             "有（synchronized）"
-          ],
-          [
-            "stringbuilder.setCharAt(index，character)",
-            "修改某一位字符（只能用于 StringBuilder）",
-            "返回 void，不能赋值。setCharAt 是 Java 里 StringBuilder / StringBuffer 的方法",
-            "StringBuilder sb = new StringBuilder(\"hello\");\nsb.setCharAt(1, 'a');\nSystem.out.println(sb);//hallo"
-          ],
-          [
-            "a.compareTo(b)/compareToIgnoreCase（忽略大小写）",
-            "··返回 负数 → 当前字符串小于 anotherString\n··返回 0 → 两个字符串相等\n··返回 正数 → 当前字符串大于 anotherString",
-            "",
-            "String x = \"abc\";\nString y = \"abd\";\nSystem.out.println(x.compareTo(y)); // -1 → 因为 'c' < 'd'"
-          ],
-          [
-            "sb.append(word, 0, word.length() - 1);",
-            "等价于：\nsb.append(word.substring(0, word.length() - 1));",
-            "append(字符串, 起始下标, 结束下标)"
-          ],
-          [
-            "String arr[] = words.get(i).split(\"[\" + separator + \"]\");",
-            "[.]  → 表示匹配字符 . 本身",
-            "[.] = 只匹配 \".\"",
-            "\"one.two\".split(\"[.]\")"
-          ],
-          [
-            "String sp = Pattern.quote(String.valueOf(separator));",
-            "把char变成string，并匹配。不然\".\"会误以为正则表达"
           ]
         ],
         "columnCount": 4,
@@ -857,9 +791,9 @@
     ]
   },
   {
-    "id": "char-4",
+    "id": "char-5",
     "title": "char",
-    "rowCount": 23,
+    "rowCount": 21,
     "preview": "char 本质是一个整数（Unicode 编码）\n运算时会自动提升为 int（类型提升）\n小于 int 的类型（byte / short / char）参与运算 → 自动转成 int\nchar 比较按 Unicode：'a' > 'A'  // true\n\nchar a = 'A'; // 65\nchar b = 'B'; // 66\n\nint result = a + b;",
     "blocks": [
       {
@@ -971,16 +905,6 @@
             "String s = \"hello\";\nchar[] arr = s.toCharArray();",
             "string->char[].会创建数组",
             "使用 charAt()（不创建数组）"
-          ],
-          [
-            "比较单个字符chr == 'c'",
-            "char 比较要用 ==,string比较用equals",
-            "",
-            "if(c == 'A') {\n    countA++;\n} else if(c == 'L') {\n    countL++;\n}"
-          ],
-          [
-            "String s = \"abc1\";\nboolean allValid = s.chars()\n    .allMatch(c -> Character.isLetterOrDigit(c));\nSystem.out.println(allValid); // true",
-            "逐个判断每个char是不是数字或字母"
           ]
         ],
         "columnCount": 4,
@@ -995,7 +919,7 @@
     ]
   },
   {
-    "id": "int-5",
+    "id": "int-6",
     "title": "int",
     "rowCount": 12,
     "preview": "方法",
@@ -1078,7 +1002,7 @@
     ]
   },
   {
-    "id": "sheet2-6",
+    "id": "sheet2-7",
     "title": "Sheet2",
     "rowCount": 16,
     "preview": "基本类型流是什么？",
@@ -1107,7 +1031,7 @@
     ]
   },
   {
-    "id": "hashset-7",
+    "id": "hashset-8",
     "title": "hashset",
     "rowCount": 12,
     "preview": "方法",
@@ -1194,9 +1118,9 @@
     ]
   },
   {
-    "id": "hashmap-8",
+    "id": "hashmap-9",
     "title": "hashmap",
-    "rowCount": 21,
+    "rowCount": 20,
     "preview": "方法",
     "blocks": [
       {
@@ -1295,11 +1219,6 @@
             "compute（万能函数），功能和 getOrDefault 类似，但更灵活。\t统计频率",
             "如果 key 不存在 → value = 1\n如果 key 已存在 → value + 1",
             "Map<Character, Integer> map = new HashMap<>();\n\nfor(char c : \"banana\".toCharArray()){\n    map.compute(c, (k, v) -> v == null ? 1 : v + 1);\n}\n\nSystem.out.println(map);//{b=1, a=3, n=2}"
-          ],
-          [
-            "1.\tmap.getOrDefault(c, someDefault)\n\t2.\tmap.putIfAbsent(c, nextLetter)",
-            "•\t如果 c 在 map 中有值，返回值\n•\t如果没有，返回 someDefault",
-            "putIfAbsent\n•\t如果 c 不存在，则放入 nextLetter\n•\t如果已经存在，保持原来的映射，这样就天然忽略重复字母，只给第一次出现的字母分配映射。"
           ]
         ],
         "columnCount": 4,
@@ -1308,7 +1227,7 @@
     ]
   },
   {
-    "id": "priorityqueue-9",
+    "id": "priorityqueue-10",
     "title": "PriorityQueue",
     "rowCount": 16,
     "preview": "priorityqueue： 一个按优先级自动排序的队列\n\t•\t不是 FIFO\n\t•\t每次取出的都是 优先级最高的元素",
@@ -1419,7 +1338,7 @@
     ]
   },
   {
-    "id": "stream-10",
+    "id": "stream-11",
     "title": "stream",
     "rowCount": 30,
     "preview": "Stream：\nArrays.stream(nums);   // 数组\nlist.stream();         // 集合\nStream.of(1,2,3);      // 手动创建",
@@ -1598,6 +1517,138 @@
         ],
         "columnCount": 4,
         "hasHeader": true
+      }
+    ]
+  },
+  {
+    "id": "--12",
+    "title": "数组集合互换",
+    "rowCount": 13,
+    "preview": "🔥 面试必记 5 个坑\n\n❗ Arrays.asList() → 不能 add/remove\n❗ toArray() 默认是 Object[]\n❗ int[] 不能直接 asList（会变一个元素）\n❗ toList()（Java 16+）是 不可变\n❗ List<Integer> ≠ int[]（需要 stream 转换）",
+    "blocks": [
+      {
+        "type": "notes",
+        "rows": [
+          "🔥 面试必记 5 个坑\n\n❗ Arrays.asList() → 不能 add/remove\n❗ toArray() 默认是 Object[]\n❗ int[] 不能直接 asList（会变一个元素）\n❗ toList()（Java 16+）是 不可变\n❗ List<Integer> ≠ int[]（需要 stream 转换）\n\n👉 集合转换核心就是三套工具：\nArrays.asList()\ntoArray()\nstream()\n\nString[] → Set:new HashSet<>(Arrays.asList(arr))\nint[] → Set:Arrays.stream(arr).boxed().collect(...)"
+        ]
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "Java 数组 & 集合互转速查表 方法",
+            "功能",
+            "备注",
+            "例子"
+          ],
+          [
+            "List → 数组",
+            "String List → String[]",
+            "错误Object[] arr = list.toArray(); // 不能当 String[] 用",
+            "List<String> list = Arrays.asList(\"a\", \"b\", \"c\");\nString[] arr = list.toArray(new String[0]);"
+          ],
+          [
+            "数组 → 不可修改 List\n最常用：Arrays.asList()",
+            "数组 → 不可修改List",
+            "✅ 普通写法，⚠️ 不可增删（重点！\ntoList() 返回的也是 不可变 List",
+            "String[] arr = {\"a\", \"b\", \"c\"};\nList<String> list = Arrays.asList(arr); 或者\nString[] arr = {\"a\", \"b\", \"c\"};\nList<String> list = Arrays.stream(arr).toList();"
+          ],
+          [
+            "数组 -> 可修改 List（推荐）",
+            "数组 -> 可修改 List",
+            "",
+            "List<String> list = new ArrayList<>(Arrays.asList(arr));"
+          ],
+          [
+            "基本类型数组int[] → 不可变List（重点坑🔥）",
+            "int[] → 不可变List",
+            "错误：int[] arr = {1, 2, 3};\nList<int[]> list = Arrays.asList(arr); // ❗只有一个元素",
+            "int[] arr = {1, 2, 3};\nList<Integer> list = Arrays.stream(arr)\n    .boxed()\n    .toList();"
+          ],
+          [
+            "基本类型数组int[] →可变 List",
+            "int[] →可变 List",
+            "",
+            "int[] arr = {1, 2, 3};\nList<Integer> list = new ArrayList<>(\n    Arrays.stream(arr).boxed().toList()\n);\n\nlist.add(4); // ✅ 可以"
+          ],
+          [
+            "List → 基本类型数组",
+            "List → int[]",
+            "",
+            "List<Integer> list = Arrays.asList(1, 2, 3);\nint[] arr = list.stream()\n    .mapToInt(Integer::intValue)\n    .toArray();"
+          ],
+          [
+            "Set → List",
+            "Set → List",
+            "",
+            "Set<String> set = new HashSet<>(Arrays.asList(\"a\", \"b\"));\nList<String> list = new ArrayList<>(set);"
+          ],
+          [
+            "List → Set（去重🔥）",
+            "List → Set（去重🔥）",
+            "",
+            "List<String> list = Arrays.asList(\"a\", \"a\", \"b\");\nSet<String> set = new HashSet<>(list);"
+          ],
+          [
+            "String数组 → Set",
+            "对象数组 → Set",
+            "",
+            "String[] arr = {\"a\", \"b\", \"a\"};\nSet<String> set = new HashSet<>(Arrays.asList(arr));"
+          ],
+          [
+            "Set → String数组",
+            "Set → 对象型数组",
+            "",
+            "String[] arr = set.toArray(new String[0]);"
+          ],
+          [
+            "基本类型数组 -> Set",
+            "int[]基本类型数组 -> Set",
+            "wrong: int[] arr = {1, 2, 3};\nSet<int[]> set = new HashSet<>(Arrays.asList(arr)); \nSet 只能存对象（Integer),不能存基本类型,.boxed() 👉 把 int 转成 Integer",
+            "int[] arr = {1, 2, 3};\n\nSet<Integer> set = Arrays.stream(arr)\n    .boxed()\n    .collect(Collectors.toSet());"
+          ]
+        ],
+        "columnCount": 4,
+        "hasHeader": true
+      }
+    ]
+  },
+  {
+    "id": "sheet5-13",
+    "title": "Sheet5",
+    "rowCount": 26,
+    "preview": "import java.util.*;",
+    "blocks": [
+      {
+        "type": "notes",
+        "rows": [
+          "import java.util.*;",
+          "class Solution {",
+          "public int[] maxSlidingWindow(int[] nums, int k) {",
+          "int n = nums.length;",
+          "int[] res = new int[n - k + 1];",
+          "int idx = 0;",
+          "Deque<Integer> deque = new ArrayDeque<>();",
+          "for (int i = 0; i < n; i++) {",
+          "// 1️⃣ 移除过期元素（窗口左边界外）",
+          "if (!deque.isEmpty() && deque.peekFirst() == i - k) {",
+          "deque.pollFirst();",
+          "}",
+          "// 2️⃣ 维护单调递减（把小的都踢掉）",
+          "while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {",
+          "deque.pollLast();",
+          "}",
+          "// 3️⃣ 加入当前元素（索引）",
+          "deque.offerLast(i);",
+          "// 4️⃣ 记录结果（窗口形成后）",
+          "if (i >= k - 1) {",
+          "res[idx++] = nums[deque.peekFirst()];",
+          "}",
+          "}",
+          "return res;",
+          "}",
+          "}"
+        ]
       }
     ]
   }
