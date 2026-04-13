@@ -572,7 +572,7 @@
   {
     "id": "string-3",
     "title": "string",
-    "rowCount": 45,
+    "rowCount": 47,
     "preview": "方法",
     "blocks": [
       {
@@ -664,7 +664,7 @@
           ],
           [
             "split(regex)",
-            "分割字符串，字符串 → 数组",
+            "分割字符串，字符串 → 数组\nsplit 使用的是正则表达式，像 \".\" 这样的字符需要用 Pattern.quote 转义，否则会匹配所有字符导致结果错误",
             "按空格 \" \" 把字符串拆分成\n多个字符串，返回 String[] 数组。用正则更好：String s = \"I  love   Java\";\nString[] arr = s.split(\"\\\\s+\");",
             "String s = \"I love Java\";\nString[] arr = s.split(\" \");\nSystem.out.println(Arrays.toString(arr));//[I, love, Java]"
           ],
@@ -833,6 +833,16 @@
             "sb.append(word, 0, word.length() - 1);",
             "等价于：\nsb.append(word.substring(0, word.length() - 1));",
             "append(字符串, 起始下标, 结束下标)"
+          ],
+          [
+            "String arr[] = words.get(i).split(\"[\" + separator + \"]\");",
+            "[.]  → 表示匹配字符 . 本身",
+            "[.] = 只匹配 \".\"",
+            "\"one.two\".split(\"[.]\")"
+          ],
+          [
+            "String sp = Pattern.quote(String.valueOf(separator));",
+            "把char变成string，并匹配。不然\".\"会误以为正则表达"
           ]
         ],
         "columnCount": 4,
@@ -843,7 +853,7 @@
   {
     "id": "char-4",
     "title": "char",
-    "rowCount": 22,
+    "rowCount": 23,
     "preview": "char 本质是一个整数（Unicode 编码）\n运算时会自动提升为 int（类型提升）\n小于 int 的类型（byte / short / char）参与运算 → 自动转成 int\nchar 比较按 Unicode：'a' > 'A'  // true\n\nchar a = 'A'; // 65\nchar b = 'B'; // 66\n\nint result = a + b;",
     "blocks": [
       {
@@ -961,6 +971,10 @@
             "char 比较要用 ==,string比较用equals",
             "",
             "if(c == 'A') {\n    countA++;\n} else if(c == 'L') {\n    countL++;\n}"
+          ],
+          [
+            "String s = \"abc1\";\nboolean allValid = s.chars()\n    .allMatch(c -> Character.isLetterOrDigit(c));\nSystem.out.println(allValid); // true",
+            "逐个判断每个char是不是数字或字母"
           ]
         ],
         "columnCount": 4,
