@@ -458,7 +458,7 @@
     "id": "stack-deque-2",
     "title": "stack&deque",
     "rowCount": 12,
-    "preview": "Stack<Integer> stack = new Stack<>(); \nDeque 当 Stack 用：\nDeque<Integer> stack = new ArrayDeque<>();\n后进先出，peek = 看顶，\npop = 拿顶，search = 从顶往下找",
+    "preview": "Stack<Integer> stack = new Stack<>(); \nDeque 当 Stack 用：\nDeque<Integer> stack = new ArrayDeque<>();\n后进先出，peek = 看顶，\npop = 拿顶，search = 从顶往下找\n\nStack 是 legacy 类（历史遗留）\n2.方法是 synchronized → 性能差\n3.官方推荐用 Deque双端队列 替代",
     "blocks": [
       {
         "type": "notes",
@@ -1033,7 +1033,7 @@
   {
     "id": "hashset-8",
     "title": "hashset",
-    "rowCount": 12,
+    "rowCount": 13,
     "preview": "方法",
     "blocks": [
       {
@@ -1110,6 +1110,12 @@
             "",
             "",
             "set.add(5);"
+          ],
+          [
+            "TreeSet",
+            "有排序的set，默认小到大",
+            "lower   = 左边最近（严格小于）\nfloor   = 左边最近（允许等于）\nceiling = 右边最近（允许等于）\nhigher  = 右边最近（严格大于）\nmax 找最大",
+            "TreeSet<Integer> set = new TreeSet<>();"
           ]
         ],
         "columnCount": 4,
@@ -1524,7 +1530,7 @@
     "id": "--12",
     "title": "数组集合互换",
     "rowCount": 13,
-    "preview": "🔥 面试必记 5 个坑\n\n❗ Arrays.asList() → 不能 add/remove\n❗ toArray() 默认是 Object[]\n❗ int[] 不能直接 asList（会变一个元素）\n❗ toList()（Java 16+）是 不可变\n❗ List<Integer> ≠ int[]（需要 stream 转换）",
+    "preview": "🔥 面试必记 5 个坑\n\n❗ Arrays.asList() → 不能 add/remove\n❗ toArray() 默认是 Object[]\n❗ int[] 不能直接 asList（会变一个元素）\n❗ toList()（Java 16+）是 不可变\n❗ List<Integer> ≠ int[]（需要 stream 转换）\n\n👉 集合转换核心就是三套工具：\nArrays.asList()\ntoArray()\nstream()\n\nString[] → Set:new HashSet<>(Arrays.asList(arr))\nint[] → Set:Arrays.stream(arr).boxed().collect(...)",
     "blocks": [
       {
         "type": "notes",
